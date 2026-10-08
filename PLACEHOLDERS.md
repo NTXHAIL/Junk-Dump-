@@ -2,7 +2,9 @@
 
 The public page no longer shows yellow dashed `[confirm]` tags. Anything below was softened or hidden so the site can go live without made-up details. Search this file when you have the real answer, then put it back on the page.
 
-Nothing here was invented. Phone, email, prices, weight, trailer sizes, and the Destin-to-Panama City Beach service area are unchanged.
+Nothing here was invented. Prices, weight, trailer sizes, and the Destin-to-Panama City Beach service area are unchanged.
+
+The phone number and email address are not shown on the page. Call, Text, and Email buttons still use them (`tel:+14053235062`, `sms:+14053235062`, and `mailto:saltnsun30a@gmail.com`). JSON-LD keeps `telephone` and does not include `email`. The quote form still sends to the address in `QUOTE_EMAIL` in `script.js`.
 
 ## Softened on the page (say "call or text" until you have the fact)
 

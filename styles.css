@@ -151,7 +151,8 @@ ul, ol { margin: 0; padding: 0; }
 }
 .eyebrow-dark { background: var(--navy); color: var(--gold); }
 .lead { font-size: 1.12rem; color: #dfe4ee; max-width: 36rem; }
-.hero-ctas { display: flex; flex-direction: column; gap: .8rem; margin: 1.5rem 0; }
+.hero-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: .8rem; margin: 1.5rem 0 1.25rem; }
+.hero-ctas .btn, .storm-ctas .btn, .quote-contact .btn { min-width: 9.5rem; }
 .hero-badges { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; }
 .hero-badges li { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: .35rem .8rem; font-size: .88rem; font-weight: 600; }
 .hero-badges .ph { background: transparent; color: var(--gold); border-color: rgba(255,184,28,.6); }
@@ -436,7 +437,8 @@ h3 .ph.ph-lg { font-size: .85em; }
 .storm-note { margin: .9rem 0 0; font-size: .9rem; color: #c3cad8; }
 .storm-note a { color: var(--gold); font-weight: 700; }
 
-.storm-ctas { display: flex; flex-direction: column; gap: .8rem; margin-top: 2rem; }
+.storm-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: .8rem; margin-top: 2rem; }
+.quote-contact { display: flex; flex-wrap: wrap; gap: .7rem; margin: .25rem 0 0; }
 .storm .btn { box-shadow: 4px 4px 0 var(--gold); }
 .storm .btn-gold { box-shadow: 4px 4px 0 var(--orange); }
 
@@ -461,7 +463,7 @@ h3 .ph.ph-lg { font-size: .85em; }
 /* ==========================================================================
    v3: real phone number + real pricing
    ========================================================================== */
-/* Header phone: icon button on mobile, number on desktop */
+/* Header call control: icon button on mobile, labeled button on desktop */
 .header-phone {
   display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 12px;
   background: var(--orange); color: var(--white); border: var(--border); box-shadow: 3px 3px 0 var(--navy);
@@ -471,11 +473,13 @@ h3 .ph.ph-lg { font-size: .85em; }
 .header-phone span { display: none; }
 @media (min-width: 960px) {
   .header-phone {
-    display: inline-flex; gap: .4rem; width: auto; height: auto; padding: 0; background: none; border: 0; box-shadow: none;
-    color: var(--navy); font-weight: 800; font-size: .95rem; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: .4rem; width: auto; min-width: 5.5rem; height: 42px;
+    padding: 0 .95rem; justify-content: center; background: var(--cream); border: var(--border);
+    box-shadow: var(--shadow-sm); border-radius: 999px; color: var(--navy); font-weight: 800; font-size: .95rem; white-space: nowrap;
   }
   .header-phone svg { width: 18px; height: 18px; fill: var(--orange); }
   .header-phone span { display: inline; }
+  .header-phone:hover { transform: translate(-1px, -1px); }
   .header-phone:hover span { color: var(--orange-2); }
   .main-nav { gap: 1.3rem; }
 }
