@@ -304,7 +304,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--n
 .footer-list { list-style: none; display: grid; gap: .5rem; }
 .footer-list a { text-decoration: none; }
 .footer-list a:hover { color: var(--gold); }
-.social { display: flex; gap: .7rem; margin-bottom: 1.25rem; }
+.social { display: flex; gap: .7rem; margin: 1rem 0 0; }
 .social a { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--navy-2); border: 2px solid var(--silver); transition: background .15s, transform .15s; }
 .social a:hover { background: var(--orange); transform: translateY(-2px); }
 .social svg { width: 22px; height: 22px; fill: var(--white); }
