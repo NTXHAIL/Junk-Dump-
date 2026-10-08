@@ -3,16 +3,9 @@
   "use strict";
 
   // ---- CONFIG -------------------------------------------------------------
-  // Inbox that receives quote requests (opens a prefilled email to this address).
-  var QUOTE_EMAIL = "saltnsun30a@gmail.com";
-
-  // To send submissions straight to an inbox without the visitor's email app,
-  // create a free form at https://formspree.io, then set:
-  //   USE_FORMSPREE = true
-  //   FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"
-  // (Netlify Forms, Basin, Getform etc. work the same way: POST the FormData.)
-  var USE_FORMSPREE = false;
-  var FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+  // Public Web3Forms access key. Safe in client code; it only accepts this form.
+  var WEB3FORMS_URL = "https://api.web3forms.com/submit";
+  var WEB3FORMS_KEY = "1e1f20a8-99ea-4e24-aa55-d306b7e794d7";
 
   // ---- Footer year --------------------------------------------------------
   var y = document.getElementById("year");
@@ -105,44 +98,56 @@
     el.addEventListener("input", function () { if (el.closest(".field").classList.contains("invalid")) validateField(el); });
   });
 
+  var submitBtn = form.querySelector('[type="submit"]');
+  var botcheck = form.querySelector('[name="botcheck"]');
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     status.textContent = "";
+    status.classList.remove("is-error");
     var firstBad = null;
     form.querySelectorAll("input, select, textarea").forEach(function (el) {
+      if (el.name === "botcheck") return;
       if (!validateField(el) && !firstBad) firstBad = el;
     });
     if (firstBad) { firstBad.focus(); return; }
 
     var d = new FormData(form);
-    var lines = [
-      "Name: " + d.get("name"),
-      "Phone: " + d.get("phone"),
-      "Email: " + d.get("email"),
-      "Address / ZIP: " + d.get("address"),
-      "Project type: " + d.get("project"),
-      "Preferred drop-off date: " + (d.get("date") || "Flexible"),
-      "",
-      "Notes:",
-      d.get("notes") || "(none)"
-    ];
+    var payload = {
+      access_key: WEB3FORMS_KEY,
+      subject: "New quote request: " + d.get("project") + " - " + d.get("name"),
+      from_name: "Junk & Dump website",
+      replyto: String(d.get("email") || "").trim(),
+      name: d.get("name"),
+      phone: d.get("phone"),
+      email: d.get("email"),
+      address: d.get("address"),
+      project: d.get("project"),
+      date: d.get("date") || "",
+      notes: d.get("notes") || "",
+      botcheck: !!(botcheck && botcheck.checked)
+    };
 
-    if (USE_FORMSPREE) {
-      fetch(FORMSPREE_ENDPOINT, { method: "POST", body: d, headers: { Accept: "application/json" } })
-        .then(function (r) {
-          if (!r.ok) throw new Error();
-          form.reset();
-          status.textContent = "Thanks! We got your request and will be in touch soon.";
-        })
-        .catch(function () { status.textContent = "Something went wrong. Please call or text us instead."; });
-      return;
-    }
-
-    var subject = "Quote request: " + d.get("project") + " – " + d.get("name");
-    var href = "mailto:" + QUOTE_EMAIL +
-      "?subject=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(lines.join("\n"));
-    window.location.href = href;
-    status.textContent = "Opening your email app with your request filled in. Just hit send!";
+    submitBtn.disabled = true;
+    fetch(WEB3FORMS_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) {
+        return r.json().then(function (body) {
+          if (!r.ok || !body || body.success !== true) throw new Error();
+        });
+      })
+      .then(function () {
+        form.reset();
+        status.classList.remove("is-error");
+        status.textContent = "Thanks! We got your request and will call or text you soon.";
+      })
+      .catch(function () {
+        status.classList.add("is-error");
+        status.textContent = "Something went wrong. Please call or text us instead.";
+      })
+      .then(function () { submitBtn.disabled = false; });
   });
 })();

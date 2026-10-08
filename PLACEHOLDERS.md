@@ -4,7 +4,7 @@ The public page no longer shows yellow dashed `[confirm]` tags. Anything below w
 
 Nothing here was invented. Prices, weight, trailer sizes, and the Destin-to-Panama City Beach service area are unchanged.
 
-The phone number and email address are not shown on the page. Call, Text, and Email buttons still use them (`tel:+14053235062`, `sms:+14053235062`, and `mailto:saltnsun30a@gmail.com`). JSON-LD keeps `telephone` and does not include `email`. The quote form still sends to the address in `QUOTE_EMAIL` in `script.js`.
+The phone number and email address are not shown on the page. Call and Text buttons use `tel:+14053235062` and `sms:+14053235062`. Email buttons use a mailto link and do not print an address. JSON-LD keeps `telephone` and does not include `email`. The quote form posts to Web3Forms from `script.js`.
 
 ## Softened on the page (say "call or text" until you have the fact)
 
@@ -52,18 +52,14 @@ The team paragraph no longer includes the starter draft ("we show up when we say
 
 ## Quote form
 
-The form still opens the visitor's email app with a prefilled message to **saltnsun30a@gmail.com**. To receive submissions without that step, create a free Formspree form, then in `script.js` set `USE_FORMSPREE = true` and `FORMSPREE_ENDPOINT` to your form URL.
+The form validates input and posts it to Web3Forms. On success it shows a short thank-you and clears the fields. It does not open the visitor's email app, and it does not show an email address on the page.
 
 ## Left off on purpose
 
 No reviews, testimonials, license or insurance numbers, years-in-business claims, guaranteed response times, or FEMA/insurance promises were added.
 
-## When you buy a domain
+## Domain
 
-Canonical, Open Graph, and JSON-LD URLs currently point at https://ntxhail.github.io/Junk-Dump-/
+Canonical, Open Graph, Twitter image, and JSON-LD URLs point at https://www.oncommandresponse.com/
 
-Update these together:
-
-- `<link rel="canonical">`
-- `og:url` and `og:image` (the image URL must stay absolute)
-- JSON-LD `url`, `logo`, and `image`
+The GitHub Pages custom domain is `www.oncommandresponse.com` (`CNAME` at the repo root).
