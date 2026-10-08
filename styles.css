@@ -288,7 +288,12 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--n
 .error { color: #c53030; font-size: .85rem; font-weight: 600; margin: .3rem 0 0; min-height: 0; }
 .error:empty { display: none; }
 .form-status { margin: 1rem 0 0; font-weight: 700; color: #1f7a45; }
+.form-status.is-error { color: #b42318; }
 .form-status:empty { display: none; }
+.botcheck { display: none !important; }
+.btn:disabled, .btn:disabled:hover, .btn:disabled:active {
+  opacity: .6; cursor: wait; transform: none; box-shadow: var(--shadow-sm);
+}
 
 /* Footer */
 .site-footer { background: var(--navy-3); color: #c3cad8; }
