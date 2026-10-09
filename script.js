@@ -16,7 +16,7 @@
 
   // ---- Header shadow on scroll -------------------------------------------
   var header = document.querySelector(".site-header");
-  var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 8); };
+  var onScroll = function () { if (header) header.classList.toggle("scrolled", window.scrollY > 8); };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
@@ -24,16 +24,17 @@
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("main-nav");
   function closeNav() {
+    if (!nav || !toggle) return;
     nav.classList.remove("open");
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Open menu");
   }
-  toggle.addEventListener("click", function () {
+  if (toggle && nav) toggle.addEventListener("click", function () {
     var open = nav.classList.toggle("open");
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   });
-  nav.addEventListener("click", function (e) { if (e.target.tagName === "A") closeNav(); });
+  if (nav) nav.addEventListener("click", function (e) { if (e.target.tagName === "A") closeNav(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeNav(); });
 
   // ---- Mobile call bar: show only after the hero CTAs are off-screen,
@@ -69,10 +70,15 @@
   var t = new Date();
   dateInput.min = [t.getFullYear(), String(t.getMonth() + 1).padStart(2, "0"), String(t.getDate()).padStart(2, "0")].join("-");
 
-  // Pricing buttons preselect the project type
-  document.querySelectorAll("[data-project]").forEach(function (btn) {
-    btn.addEventListener("click", function () { projectSelect.value = btn.getAttribute("data-project"); });
-  });
+  // Links like quote.html?project=Direct%20trailer%20rental preselect the project type
+  try {
+    var wanted = new URLSearchParams(window.location.search).get("project");
+    if (wanted && projectSelect) {
+      Array.prototype.forEach.call(projectSelect.options, function (o) {
+        if (o.value === wanted || o.text === wanted) projectSelect.value = o.value;
+      });
+    }
+  } catch (err) { /* ignore */ }
 
   var rules = {
     name: function (v) { return v.trim().length >= 2 || "Please enter your name."; },
