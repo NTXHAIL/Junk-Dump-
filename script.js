@@ -6,6 +6,9 @@
   // Public Web3Forms access key. Safe in client code; it only accepts this form.
   var WEB3FORMS_URL = "https://api.web3forms.com/submit";
   var WEB3FORMS_KEY = "1e1f20a8-99ea-4e24-aa55-d306b7e794d7";
+  // CRM relay (Supabase Edge Function) that adds each quote to GoHighLevel as a
+  // contact + opportunity. No secrets here: the GHL token stays server-side.
+  var CRM_RELAY_URL = "https://wjjmbowcxzoqmxdkwpse.supabase.co/functions/v1/quote-relay";
 
   // ---- Footer year --------------------------------------------------------
   var y = document.getElementById("year");
@@ -127,6 +130,21 @@
       notes: d.get("notes") || "",
       botcheck: !!(botcheck && botcheck.checked)
     };
+
+    // Copy the lead into GoHighLevel in parallel. Fire-and-forget: it never
+    // blocks, delays or changes the email submission or the thank-you message.
+    try {
+      fetch(CRM_RELAY_URL, {
+        method: "POST",
+        mode: "cors",
+        keepalive: true,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: payload.name, phone: payload.phone, email: payload.email, address: payload.address,
+          project: payload.project, date: payload.date, notes: payload.notes, botcheck: payload.botcheck
+        })
+      }).catch(function () {});
+    } catch (err) { /* ignore */ }
 
     submitBtn.disabled = true;
     fetch(WEB3FORMS_URL, {
