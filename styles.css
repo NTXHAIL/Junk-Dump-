@@ -532,3 +532,9 @@ h3 .ph.ph-lg { font-size: .85em; }
 @media (min-width: 960px) {
   .main-nav .nav-book { display: none; }
 }
+
+/* ---------- Legal links & form consent ---------- */
+.form-consent { font-size: .82rem; line-height: 1.5; color: var(--muted); margin: .25rem 0 1rem; }
+.form-consent a { color: var(--orange-2); }
+.footer-legal a { color: var(--gold); text-decoration: none; }
+.footer-legal a:hover { text-decoration: underline; }
