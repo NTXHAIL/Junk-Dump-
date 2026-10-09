@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Get a Free Quote | Junk &amp; Dump Rental</title>
-  <meta name="description" content="Request a free quote from Junk &amp; Dump Rental for a dump trailer rental, driveway trailer drop or hurricane and storm debris drop-off. Serving Destin to Panama City Beach, FL.">
+  <title>Join the Waiting List | Junk &amp; Dump Rental</title>
+  <meta name="description" content="Booked solid? Join the Junk &amp; Dump Rental waiting list and we'll reach out as soon as a trailer opens up. Serving Destin to Panama City Beach, FL.">
   <meta name="theme-color" content="#0E1B3D">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.oncommandresponse.com/assets/quote.html">
+  <link rel="canonical" href="https://www.oncommandresponse.com/assets/waitlist.html">
 
   <!-- Icons -->
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="/styles.css">
 
 </head>
-<body class="quote-page">
+<body class="quote-page waitlist-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ============ HEADER ============ -->
@@ -45,7 +45,7 @@
         <span>Call</span>
       </a>
       <a href="https://api.leadconnectorhq.com/widget/bookings/book-a-dump-trailer" class="btn btn-gold btn-sm header-cta header-book" target="_blank" rel="noopener">Book a Trailer</a>
-      <a href="/assets/quote.html" class="btn btn-orange btn-sm header-cta" aria-current="page">Get a Quote</a>
+      <a href="/assets/quote.html" class="btn btn-orange btn-sm header-cta">Get a Quote</a>
       <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -56,10 +56,12 @@
     <section class="section section-cream" id="quote">
       <div class="container quote">
         <div class="quote-copy">
-          <p class="eyebrow eyebrow-dark">Free quote</p>
-          <h1>Get a quote</h1>
-          <p>Tell us a bit about your project and we'll get back to you. If it's time-sensitive, call or text.</p>
+          <p class="eyebrow eyebrow-dark">Waiting list</p>
+          <h1>Join the waiting list</h1>
+          <p>When demand is high, our trailers can book up fast. Add your name and what you need, and we'll reach out as soon as a trailer opens up. Joining the list is free and doesn't lock you into anything.</p>
+          <p>Need it right away? Call or text and we'll see what we can do.</p>
           <p class="quote-contact">
+            <a href="/assets/quote.html" class="btn btn-orange">Get a quote instead</a>
             <a href="tel:+18506609936" class="btn btn-gold" aria-label="Call Junk &amp; Dump">Call us</a>
             <a href="sms:+18506609936" class="btn btn-outline" aria-label="Text Junk &amp; Dump">Text us</a>
             <a href="mailto:Joseph.heidel@gmail.com" class="btn btn-orange" aria-label="Email Junk &amp; Dump">Email us</a>
@@ -77,34 +79,34 @@
             </a>
           </p>
         </div>
-        <form class="card quote-form" id="quote-form" novalidate>
+        <form class="card quote-form" id="quote-form" data-waitlist="true" novalidate>
           <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" class="botcheck" style="display: none;">
           <div class="field">
-            <label for="q-name">Name *</label>
-            <input id="q-name" name="name" type="text" autocomplete="name" required>
+            <label for="w-name">Name *</label>
+            <input id="w-name" name="name" type="text" autocomplete="name" required>
             <p class="error" aria-live="polite"></p>
           </div>
           <div class="field-row">
             <div class="field">
-              <label for="q-phone">Phone *</label>
-              <input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="(555) 555-5555">
+              <label for="w-phone">Phone *</label>
+              <input id="w-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="(555) 555-5555">
               <p class="error" aria-live="polite"></p>
             </div>
             <div class="field">
-              <label for="q-email">Email *</label>
-              <input id="q-email" name="email" type="email" autocomplete="email" required>
+              <label for="w-email">Email *</label>
+              <input id="w-email" name="email" type="email" autocomplete="email" required>
               <p class="error" aria-live="polite"></p>
             </div>
           </div>
           <div class="field">
-            <label for="q-address">Address or ZIP *</label>
-            <input id="q-address" name="address" type="text" autocomplete="street-address" required>
+            <label for="w-address">ZIP code or address *</label>
+            <input id="w-address" name="address" type="text" autocomplete="street-address" required>
             <p class="error" aria-live="polite"></p>
           </div>
           <div class="field-row">
             <div class="field">
-              <label for="q-project">Project type *</label>
-              <select id="q-project" name="project" required>
+              <label for="w-project">What do you need? *</label>
+              <select id="w-project" name="project" required>
                 <option value="">Choose one…</option>
                 <option>Direct trailer rental</option>
                 <option>Driveway trailer drop</option>
@@ -113,19 +115,18 @@
               <p class="error" aria-live="polite"></p>
             </div>
             <div class="field">
-              <label for="q-date">Preferred drop-off date</label>
-              <input id="q-date" name="date" type="date">
+              <label for="w-date">Earliest date you need it</label>
+              <input id="w-date" name="date" type="date">
               <p class="error" aria-live="polite"></p>
             </div>
           </div>
           <div class="field">
-            <label for="q-notes">Notes</label>
-            <textarea id="q-notes" name="notes" rows="4" placeholder="What are you loading? Any tight spots, gates, HOA rules or storm debris blocking the driveway?"></textarea>
+            <label for="w-notes">Notes / desired dates</label>
+            <textarea id="w-notes" name="notes" rows="4" placeholder="Roughly how many days do you need it, and are your dates flexible? What are you loading? Any tight spots or gates?"></textarea>
           </div>
-          <p class="form-consent">By submitting this form, you agree to be contacted by call, text, or email about your request. Message and data rates may apply. Message frequency varies. Reply STOP to opt out or HELP for help. See our <a href="/terms.html">Terms of Service</a> and <a href="/privacy.html">Privacy Policy</a>.</p>
-          <button type="submit" class="btn btn-orange btn-lg btn-block">Send my quote request</button>
+          <p class="form-consent">By submitting this form, you agree to be contacted by call, text, or email about your waiting list request. Message and data rates may apply. Message frequency varies. Reply STOP to opt out or HELP for help. See our <a href="/terms.html">Terms of Service</a> and <a href="/privacy.html">Privacy Policy</a>.</p>
+          <button type="submit" class="btn btn-orange btn-lg btn-block">Add me to the waiting list</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-          <p class="form-alt">Booked solid? <a href="/assets/waitlist.html">Join the waiting list</a></p>
         </form>
       </div>
     </section>
