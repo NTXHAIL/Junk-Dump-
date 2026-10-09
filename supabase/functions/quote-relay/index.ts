@@ -18,6 +18,11 @@ const SERVICE_TYPE_MAP: Record<string, string> = {
   "Driveway trailer drop": "Driveway trailer drop",
   "Hurricane/storm clean-up services": "Storm clean-up drop-off",
 };
+// Waiting list: the site sends project = "Waiting list - <type>" from /assets/waitlist.html.
+// Optional: create a "Waiting List" stage in the Marketing Pipeline in GHL and paste its id here
+// so waitlist leads land there instead of New Lead. Empty = keep using New Lead.
+const WAITLIST_STAGE_ID = "";
+const WAITLIST_PREFIX = /^waiting list\s*-\s*/i;
 const GHL = "https://services.leadconnectorhq.com";
 const ALLOWED = [
   "https://www.oncommandresponse.com", "https://oncommandresponse.com",
@@ -73,7 +78,10 @@ Deno.serve(async (req: Request) => {
   if (d.botcheck === true || d.botcheck === "on") return new Response('{"ok":true}', { headers: h }); // honeypot
   const name = s(d.name, 100), phone = s(d.phone, 40), email = s(d.email, 120).toLowerCase();
   const address = s(d.address, 200), date = s(d.date, 20), notes = s(d.notes, 2000);
-  const project = PROJECTS.includes(s(d.project)) ? s(d.project) : "Other";
+  const rawProject = s(d.project);
+  const isWaitlist = WAITLIST_PREFIX.test(rawProject) || d.waitlist === true;
+  const baseProject = rawProject.replace(WAITLIST_PREFIX, "");
+  const project = PROJECTS.includes(baseProject) ? baseProject : "Other";
   if (name.length < 2 || (phone.replace(/\D/g, "").length < 10 && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)))
     return new Response('{"ok":false}', { status: 400, headers: h });
 
@@ -92,16 +100,16 @@ Deno.serve(async (req: Request) => {
     const contactId = up.data?.contact?.id;
     if (up.status === 401) throw new Error("GHL token rejected (401) - update app_secrets GHL_PIT with the current Private Integration token");
     if (!up.ok || !contactId) throw new Error("contact upsert " + up.status + " " + JSON.stringify(up.data).slice(0, 300));
-    await ghl("POST", `/contacts/${contactId}/tags`, { tags: ["website-quote", "project-" + slug(project)] });
-    const noteBody = ["Website quote request", "Project: " + project, "Preferred drop-off date: " + (date || "not given"),
+    await ghl("POST", `/contacts/${contactId}/tags`, { tags: (isWaitlist ? ["website-waitlist", "waitlist"] : ["website-quote"]).concat("project-" + slug(project)) });
+    const noteBody = [isWaitlist ? "Website WAITING LIST signup" : "Website quote request", "Project: " + project, "Preferred drop-off date: " + (date || "not given"),
       "Address/ZIP: " + (address || "not given"), "Phone: " + phone, "Email: " + email, "Notes: " + (notes || "none")].join("\n");
     await ghl("POST", `/contacts/${contactId}/notes`, { body: noteBody });
-    const opp = { pipelineId: PIPELINE_ID, locationId: LOCATION_ID, pipelineStageId: STAGE_ID, status: "open",
-      contactId, name: `${name} - ${project}`.slice(0, 150), source: "Website" };
+    const opp = { pipelineId: PIPELINE_ID, locationId: LOCATION_ID, pipelineStageId: isWaitlist && WAITLIST_STAGE_ID ? WAITLIST_STAGE_ID : STAGE_ID, status: "open",
+      contactId, name: `${name} - ${isWaitlist ? "Waiting list - " : ""}${project}`.slice(0, 150), source: "Website" };
     let o = await ghl("POST", "/opportunities/", opp);
     if (!o.ok) o = await ghl("POST", "/opportunities/upsert", opp); // e.g. contact already has an open opportunity
     const opportunityId = o.data?.opportunity?.id ?? o.data?.id ?? null;
-    await log({ project, ok: !!opportunityId, ghl_contact_id: contactId, ghl_opportunity_id: opportunityId,
+    await log({ project: isWaitlist ? "Waiting list - " + project : project, ok: !!opportunityId, ghl_contact_id: contactId, ghl_opportunity_id: opportunityId,
       error: opportunityId ? null : ("opportunity " + o.status + " " + JSON.stringify(o.data).slice(0, 300)) });
     return new Response(JSON.stringify({ ok: true, contactId, opportunityId }), { headers: h });
   } catch (e) {
