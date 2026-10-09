@@ -514,3 +514,21 @@ h3 .ph.ph-lg { font-size: .85em; }
 .trailer-chips .chips-label { background: none; border: 0; box-shadow: none; color: var(--gold); padding-left: 0; font-weight: 800; }
 .weight-note { margin: 1.75rem 0 0; background: var(--cream); border: 3px solid var(--navy); border-left: 10px solid var(--orange); border-radius: 14px; padding: .9rem 1.1rem; box-shadow: var(--shadow-sm); }
 .fine-print strong { color: var(--gold); }
+
+/* ==========================================================================
+   v3: "Book a Trailer" (GoHighLevel booking calendar, opens in a new tab)
+   ========================================================================== */
+.book-note { font-size: .88rem; font-weight: 600; color: var(--navy); margin: .6rem 0 0; }
+.book-note-light { color: var(--gold); }
+.book-note-center { text-align: center; margin: 1.5rem 0 .5rem; }
+.hero .book-note { margin: -.4rem 0 1.25rem; }
+.card-ctas { display: flex; flex-wrap: wrap; gap: .6rem; }
+.price-card .price-book { margin-top: .7rem; }
+.price-card .btn + .price-book { margin-top: .7rem; }
+.storm-ctas .btn-navy { border-color: var(--gold); }
+.footer-book { margin-top: .6rem; }
+.nav-book { color: var(--orange) !important; }
+.header-book { margin-right: .5rem; }
+@media (min-width: 960px) {
+  .main-nav .nav-book { display: none; }
+}
