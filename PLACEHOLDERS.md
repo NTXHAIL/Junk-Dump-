@@ -17,7 +17,7 @@ The phone number and email address are not shown on the page. Call and Text butt
 | Haul-away and re-drop | Storm pricing card: "call or text for details" | How a filled storm trailer is swapped |
 | Storm-season dates | Storm tile: "Call or text to check current availability." | The dates you actually offer drop-offs |
 | Typical response time | Storm tile and the hurricane FAQ. No number is published. The page says timing depends on roads, safety, and demand. | A typical window, worded as typical, never a guarantee |
-| Swap-out process | Storm tile: "Call or text about hauling it away and booking another drop." | How a customer books the next drop |
+| Swap-out process | Storm tile: "Call or text about hauling it away and scheduling another drop." | How a customer schedules the next drop |
 | Pickup, towing, and return for direct rentals | "How it works" steps 2–3, and the direct-vs-drop FAQ | What the customer does to pick up, tow, and return a direct rental |
 | Quote response time | Quote intro: "If it's time-sensitive, call or text." | How soon you usually reply |
 | Payment methods | FAQ "How do I pay?": call or text | Card, cash, Venmo, or whatever you accept |
