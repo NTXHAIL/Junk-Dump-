@@ -544,3 +544,9 @@ h3 .ph.ph-lg { font-size: .85em; }
 .quote-cta .quote-contact { justify-content: center; }
 /* Quote page: single centered form column */
 .quote-page .quote { max-width: 1000px; }
+
+/* Waiting list link */
+.form-alt { margin: 1rem 0 0; text-align: center; font-size: .95rem; color: var(--muted); }
+.form-alt a { color: var(--orange-2); font-weight: 700; }
+.footer-waitlist { margin: .75rem 0 0; font-size: .95rem; }
+.footer-waitlist a { color: var(--gold); text-decoration: underline; }

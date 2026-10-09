@@ -63,8 +63,12 @@
   var form = document.getElementById("quote-form");
   if (!form) return;
   var status = document.getElementById("form-status");
-  var dateInput = form.querySelector("#q-date");
-  var projectSelect = form.querySelector("#q-project");
+  // The waiting list page reuses this same code path (form has data-waitlist="true").
+  // The project type is sent as "Waiting list - <type>" so it is easy to tell apart
+  // in the backup email and in GoHighLevel.
+  var isWaitlist = form.getAttribute("data-waitlist") === "true";
+  var dateInput = form.querySelector('[name="date"]');
+  var projectSelect = form.querySelector('[name="project"]');
 
   // No past dates for drop-off
   var t = new Date();
@@ -122,18 +126,21 @@
     if (firstBad) { firstBad.focus(); return; }
 
     var d = new FormData(form);
+    var projectLabel = isWaitlist ? "Waiting list - " + d.get("project") : d.get("project");
+    var notesText = d.get("notes") || "";
+    if (isWaitlist) notesText = "[WAITING LIST] " + notesText;
     var payload = {
       access_key: WEB3FORMS_KEY,
-      subject: "New quote request: " + d.get("project") + " - " + d.get("name"),
+      subject: (isWaitlist ? "New waiting list signup: " : "New quote request: ") + d.get("project") + " - " + d.get("name"),
       from_name: "Junk & Dump website",
       replyto: String(d.get("email") || "").trim(),
       name: d.get("name"),
       phone: d.get("phone"),
       email: d.get("email"),
       address: d.get("address"),
-      project: d.get("project"),
+      project: projectLabel,
       date: d.get("date") || "",
-      notes: d.get("notes") || "",
+      notes: notesText,
       botcheck: !!(botcheck && botcheck.checked)
     };
 
@@ -166,7 +173,9 @@
       .then(function () {
         form.reset();
         status.classList.remove("is-error");
-        status.textContent = "Thanks! We got your request and will call or text you soon.";
+        status.textContent = isWaitlist
+          ? "You're on the list! We'll call or text you as soon as a trailer opens up."
+          : "Thanks! We got your request and will call or text you soon.";
       })
       .catch(function () {
         status.classList.add("is-error");
