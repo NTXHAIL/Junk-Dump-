@@ -550,3 +550,8 @@ h3 .ph.ph-lg { font-size: .85em; }
 .form-alt a { color: var(--orange-2); font-weight: 700; }
 .footer-waitlist { margin: .75rem 0 0; font-size: .95rem; }
 .footer-waitlist a { color: var(--gold); text-decoration: underline; }
+
+/* Rentals CTA (replaces posted prices) */
+.price-cta { text-align: center; margin: 2rem auto 0; }
+.price-cta-title { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 1rem; color: #fff; }
+.price-cta-row { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }

@@ -2,7 +2,7 @@
 
 The public page no longer shows yellow dashed `[confirm]` tags. Anything below was softened or hidden so the site can go live without made-up details. Search this file when you have the real answer, then put it back on the page.
 
-Nothing here was invented. Prices, weight, trailer sizes, and the Destin-to-Panama City Beach service area are unchanged.
+Nothing here was invented. Weight, trailer sizes, and the Destin-to-Panama City Beach service area are unchanged.
 
 The phone number and email address are not shown on the page. Call and Text buttons use `tel:+18506609936` and `sms:+18506609936`. Email buttons use a mailto link and do not print an address. JSON-LD keeps `telephone` and does not include `email`. The quote form posts to Web3Forms from `script.js`.
 
@@ -11,7 +11,7 @@ The phone number and email address are not shown on the page. Call and Text butt
 | Item | Where it shows now | What to add |
 |---|---|---|
 | Business hours | Footer: "Call or text for current hours." | Mon–Fri, Saturday, and Sunday hours |
-| Extra-day fee | Pricing fine print and FAQ "How much does it cost?" | The extra-day amount or policy |
+| Extra-day fee | Rentals fine print and FAQ "How much does it cost?" | The extra-day amount or policy |
 | Prohibited-item fee | Same fine print, plus FAQ "What if something on the no list ends up in the trailer?" | What you charge, if anything |
 | Extra-day policy | FAQ "How long can I keep it?" — "Call or text and ask." | How extra days work |
 | Haul-away and re-drop | Storm pricing card: "call or text for details" | How a filled storm trailer is swapped |
@@ -21,6 +21,7 @@ The phone number and email address are not shown on the page. Call and Text butt
 | Pickup, towing, and return for direct rentals | "How it works" steps 2–3, and the direct-vs-drop FAQ | What the customer does to pick up, tow, and return a direct rental |
 | Quote response time | Quote intro: "If it's time-sensitive, call or text." | How soon you usually reply |
 | Payment methods | FAQ "How do I pay?": call or text | Card, cash, Venmo, or whatever you accept |
+| Rental pricing | Prices were removed from the site. Cards and FAQ say "Get a quote or message us for details" and "We offer daily and weekly rentals." | Publish rates only if you decide to |
 | Storm pricing | Still unpublished. The card says "Call or text for storm pricing." | A number only when you set one |
 
 ## Hidden (not on the page)
