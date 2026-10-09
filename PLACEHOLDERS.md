@@ -4,7 +4,7 @@ The public page no longer shows yellow dashed `[confirm]` tags. Anything below w
 
 Nothing here was invented. Prices, weight, trailer sizes, and the Destin-to-Panama City Beach service area are unchanged.
 
-The phone number and email address are not shown on the page. Call and Text buttons use `tel:+14053235062` and `sms:+14053235062`. Email buttons use a mailto link and do not print an address. JSON-LD keeps `telephone` and does not include `email`. The quote form posts to Web3Forms from `script.js`.
+The phone number and email address are not shown on the page. Call and Text buttons use `tel:+18506609936` and `sms:+18506609936`. Email buttons use a mailto link and do not print an address. JSON-LD keeps `telephone` and does not include `email`. The quote form posts to Web3Forms from `script.js`.
 
 ## Softened on the page (say "call or text" until you have the fact)
 
