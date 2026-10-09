@@ -538,3 +538,9 @@ h3 .ph.ph-lg { font-size: .85em; }
 .form-consent a { color: var(--orange-2); }
 .footer-legal a { color: var(--gold); text-decoration: none; }
 .footer-legal a:hover { text-decoration: underline; }
+
+/* Homepage "Get a quote" call-to-action (the form itself lives on assets/quote.html) */
+.quote-cta { max-width: 760px; text-align: center; }
+.quote-cta .quote-contact { justify-content: center; }
+/* Quote page: single centered form column */
+.quote-page .quote { max-width: 1000px; }
