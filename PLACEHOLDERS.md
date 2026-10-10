@@ -49,7 +49,7 @@ Please check these against your landfill or transfer station before treating the
 
 ## Story
 
-The team paragraph no longer includes the starter draft ("we show up when we say we will…"). It only says you are a husband-and-wife team serving Destin to Panama City Beach, including 30A, and that a call or text reaches you directly. Replace it with your own words when you want.
+The team paragraph no longer includes the starter draft ("we show up when we say we will…"). It only says you are a husband-and-wife team serving the Florida Panhandle, from Pensacola to Mexico Beach, including 30A, and that a call or text reaches you directly. Replace it with your own words when you want.
 
 ## Quote form
 

@@ -1,6 +1,6 @@
 # Junk & Dump Rental
 
-One-page site for Junk & Dump Rental, a husband-and-wife dump trailer rental serving Destin to Panama City Beach, FL, including 30A.
+One-page site for Junk & Dump Rental, a husband-and-wife dump trailer rental serving the Florida Panhandle, from Pensacola to Mexico Beach, including 30A.
 
 Plain HTML, CSS, and vanilla JavaScript. No build step.
 

@@ -59,6 +59,20 @@
     });
   });
 
+  // GA4: count taps on Call (tel:) and Text (sms:) links on any page.
+  // Placed before the form lookup so it also runs on pages without a form.
+  document.addEventListener("click", function (e) {
+    try {
+      var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"], a[href^="sms:"]');
+      if (!a || typeof window.gtag !== "function") return;
+      var isText = a.getAttribute("href").indexOf("sms:") === 0;
+      window.gtag("event", isText ? "click_to_text" : "click_to_call", {
+        link_url: a.getAttribute("href"),
+        page_path: location.pathname
+      });
+    } catch (err) { /* never block the link */ }
+  });
+
   // ---- Quote form ---------------------------------------------------------
   var form = document.getElementById("quote-form");
   if (!form) return;
@@ -176,6 +190,15 @@
         status.textContent = isWaitlist
           ? "You're on the list! We'll call or text you as soon as a trailer opens up."
           : "Thanks! We got your request and will call or text you soon.";
+        // GA4 conversion: fires only after the form was accepted
+        try {
+          if (typeof window.gtag === "function") {
+            window.gtag("event", isWaitlist ? "waitlist_signup" : "generate_lead", {
+              form_type: isWaitlist ? "waitlist" : "quote",
+              project_type: String(d.get("project") || "")
+            });
+          }
+        } catch (err) { /* tracking must never break the form */ }
       })
       .catch(function () {
         status.classList.add("is-error");
