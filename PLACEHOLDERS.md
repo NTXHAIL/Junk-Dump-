@@ -4,7 +4,7 @@ The public page no longer shows yellow dashed `[confirm]` tags. Anything below w
 
 Nothing here was invented. Weight, trailer sizes, and the Destin-to-Panama City Beach service area are unchanged.
 
-The phone number and email address are not shown on the page. Call and Text buttons use `tel:+18506609936` and `sms:+18506609936`. Email buttons use a mailto link and do not print an address. JSON-LD keeps `telephone` and does not include `email`. The quote form posts to Web3Forms from `script.js`.
+The phone number and email address are not shown on the page (email buttons go to dump30a@gmail.com). The business mailing address (Junk & Dump 30a LLC, 5753 Hwy 85 N # 893, Crestview, FL 32413) is shown in every footer and in the Terms/Privacy contact sections, and is in the JSON-LD `address`. Call and Text buttons use `tel:+18506609936` and `sms:+18506609936`. Email buttons use a mailto link and do not print an address. JSON-LD keeps `telephone` and does not include `email`. The quote form posts to Web3Forms from `script.js`.
 
 ## Softened on the page (say "call or text" until you have the fact)
 
@@ -31,7 +31,7 @@ The phone number and email address are not shown on the page. Call and Text butt
 | Legal business name (LLC / DBA) | Removed from the copyright line. It now reads "Junk & Dump Rental." |
 | Facebook, Instagram, and TikTok | Icons removed. The footer column is "Get a quote" until real profile URLs exist. |
 | Team photo | The striped "add a photo" box is gone. The section shows the existing logo illustration instead. Save a photo as `assets/team.jpg` and swap it in when you have one. |
-| Street address, city, and ZIP | Removed from JSON-LD. Do not add a home address if you don't want it public. City and ZIP still help local search once you choose what to publish. |
+| Street address, city, and ZIP | Done. Business mailing address (5753 Hwy 85 N # 893, Crestview, FL 32413) is now in the footers, Terms/Privacy contact sections, and JSON-LD `address`. |
 | Opening hours in JSON-LD | Removed. Add `openingHours` only after the footer hours are real. |
 | Social profile URLs in JSON-LD `sameAs` | Removed. Add them when the links are real. |
 | Danielle's last name | JSON-LD lists her as "Danielle" only. Joseph Heidel is unchanged. |
